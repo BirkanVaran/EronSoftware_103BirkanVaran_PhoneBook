@@ -90,7 +90,6 @@ namespace PhoneBookUI.WebServices
         {
             try
             {
-                CategoryViewModel responseData = new CategoryViewModel();
                 using (WebClient webClient = new WebClient())
                 {
                     try
@@ -121,11 +120,14 @@ namespace PhoneBookUI.WebServices
             }
         }
 
-        public ResponseViewModel InsertCategory(CategoryViewModel model, string uToken)
+        public bool InsertCategory(string categoryName, string uToken)
         {
             try
             {
-                ResponseViewModel responseData = new ResponseViewModel();
+                CategoryInsertViewModel insertModel = new CategoryInsertViewModel()
+                {
+                    e_kategori_adi = categoryName
+                };
                 using (WebClient webClient=new WebClient())
                 {
                     try
@@ -134,13 +136,14 @@ namespace PhoneBookUI.WebServices
                         webClient.Headers.Add("utoken", uToken);
                         webClient.Encoding = Encoding.UTF8;
 
-                        string data = JsonConvert.SerializeObject(model);
+                        string data = JsonConvert.SerializeObject(insertModel);
 
                         string response = webClient.UploadString(categoryUrl, "POST", data);
 
                         var result = JsonConvert.DeserializeObject<List<ResponseViewModel>>(response);
 
-                        return result.FirstOrDefault();
+                        return result.FirstOrDefault().MESAJ == "Kategori kayıt edildi" ? true : false;
+
 
                     }
                     catch (Exception)
@@ -157,6 +160,259 @@ namespace PhoneBookUI.WebServices
             }
 
         }
+
+        public bool UpdateCategory(string newCategoryName, int eskiId, string uToken)
+        {
+            try
+            {
+                CategoryUpdateViewModel updateModel = new CategoryUpdateViewModel()
+                {
+                    e_kategori_adi = newCategoryName,
+                    ESKI_ID = eskiId
+                };
+                using (WebClient webClient = new WebClient())
+                {
+                    try
+                    {
+                        webClient.Headers.Add("islem", "KATEGORI_LISTESI_DUZENLE");
+                        webClient.Headers.Add("utoken", uToken);
+                        webClient.Encoding = Encoding.UTF8;
+
+                        string data = JsonConvert.SerializeObject(updateModel);
+
+                        string response = webClient.UploadString(categoryUrl, "POST", data);
+
+                        var result = JsonConvert.DeserializeObject<List<ResponseViewModel>>(response);
+
+                        return result.FirstOrDefault().MESAJ == "Kategori güncellendi" ? true : false;
+
+
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public bool DeleteCategory(int eskiId, string uToken)
+        {
+            try
+            {
+                CategoryDeleteViewModel deleteModel = new CategoryDeleteViewModel()
+                {
+                    ESKI_ID = eskiId
+                };
+                using (WebClient webClient = new WebClient())
+                {
+                    try
+                    {
+                        webClient.Headers.Add("islem", "KATEGORI_LISTESI_SIL");
+                        webClient.Headers.Add("utoken", uToken);
+                        webClient.Encoding = Encoding.UTF8;
+
+                        string data = JsonConvert.SerializeObject(deleteModel);
+
+                        string response = webClient.UploadString(categoryUrl, "POST", data);
+
+                        var result = JsonConvert.DeserializeObject<List<ResponseViewModel>>(response);
+
+                        return result.FirstOrDefault().MESAJ == "Kategori silindi" ? true : false;
+
+
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public List<PersonViewModel> GetAllPeople(string uToken)
+        {
+            try
+            {
+                using (WebClient webClient = new WebClient())
+                {
+                    try
+                    {
+                        webClient.Headers.Add("islem", "KISI_LISTESI");
+                        webClient.Headers.Add("utoken", uToken);
+                        webClient.Encoding = Encoding.UTF8;
+
+                        string response = webClient.UploadString(personUrl, "POST", string.Empty);
+
+
+                        var result = JsonConvert.DeserializeObject<List<PersonViewModel>>(response);
+
+                        return result;
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        throw ex;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public bool InsertPerson(string fullName, string phoneNumber, int categoryId, string uToken)
+        {
+            try
+            {
+                PersonInsertViewModel insertModel = new PersonInsertViewModel()
+                {
+                    e_kategori_id=categoryId,
+                    e_adi_soyadi=fullName,
+                    e_telefon=phoneNumber
+
+                };
+                using (WebClient webClient = new WebClient())
+                {
+                    try
+                    {
+                        webClient.Headers.Add("islem", "KISI_LISTESI_EKLE");
+                        webClient.Headers.Add("utoken", uToken);
+                        webClient.Encoding = Encoding.UTF8;
+
+                        string data = JsonConvert.SerializeObject(insertModel);
+
+                        string response = webClient.UploadString(personUrl, "POST", data);
+
+                        var result = JsonConvert.DeserializeObject<List<ResponseViewModel>>(response);
+
+                        return result.FirstOrDefault().MESAJ == "Kişi rehbere eklendi" ? true : false;
+
+
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public bool UpdatePerson(string newFullName, string newPhoneNumber,int newCategoryId, int eskiId, string uToken)
+        {
+            try
+            {
+                PersonUpdateViewModel updateModel = new PersonUpdateViewModel()
+                {
+                    e_kategori_id=newCategoryId,
+                    e_adi_soyadi=newFullName,
+                    e_telefon=newPhoneNumber,
+                    ESKI_ID=eskiId
+
+                };
+                using (WebClient webClient = new WebClient())
+                {
+                    try
+                    {
+                        webClient.Headers.Add("islem", "KISI_LISTESI_DUZENLE");
+                        webClient.Headers.Add("utoken", uToken);
+                        webClient.Encoding = Encoding.UTF8;
+
+                        string data = JsonConvert.SerializeObject(updateModel);
+
+                        string response = webClient.UploadString(categoryUrl, "POST", data);
+
+                        var result = JsonConvert.DeserializeObject<List<ResponseViewModel>>(response);
+
+                        return result.FirstOrDefault().MESAJ == "Kişi bilgisi güncellendi" ? true : false;
+
+
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public bool DeletePerson(int eskiId, string uToken)
+        {
+            try
+            {
+                PersonDeleteViewModel deleteModel = new PersonDeleteViewModel()
+                {
+                    ESKI_ID = eskiId
+                };
+                using (WebClient webClient = new WebClient())
+                {
+                    try
+                    {
+                        webClient.Headers.Add("islem", "KISI_LISTESI_SIL");
+                        webClient.Headers.Add("utoken", uToken);
+                        webClient.Encoding = Encoding.UTF8;
+
+                        string data = JsonConvert.SerializeObject(deleteModel);
+
+                        string response = webClient.UploadString(personUrl, "POST", data);
+
+                        var result = JsonConvert.DeserializeObject<List<ResponseViewModel>>(response);
+
+                        return result.FirstOrDefault().MESAJ == "Kişi silindi" ? true : false;
+
+
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
+
+
+
+
 
     }
 }

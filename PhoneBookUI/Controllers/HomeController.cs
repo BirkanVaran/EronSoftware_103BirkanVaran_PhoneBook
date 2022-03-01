@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoneBookUI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +9,16 @@ namespace PhoneBookUI.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
+            if (string.IsNullOrEmpty(CurrentUserToken.Token))
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        
     }
 }

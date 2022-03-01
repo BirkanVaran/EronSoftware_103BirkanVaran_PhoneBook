@@ -120,14 +120,22 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CurrentUserToken.cs" />
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\Entities\Person.cs" />
+    <Compile Include="Models\ViewModels\CategoryDeleteViewModel.cs" />
+    <Compile Include="Models\ViewModels\CategoryInsertViewModel.cs" />
+    <Compile Include="Models\ViewModels\CategoryUpdateViewModel.cs" />
     <Compile Include="Models\ViewModels\CategoryViewModel.cs" />
     <Compile Include="Models\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Models\ViewModels\PersonDeleteViewModel.cs" />
+    <Compile Include="Models\ViewModels\PersonInsertViewModel.cs" />
+    <Compile Include="Models\ViewModels\PersonUpdateViewModel.cs" />
     <Compile Include="Models\ViewModels\PersonViewModel.cs" />
     <Compile Include="Models\ViewModels\ResponseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -169,6 +177,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Birkan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
