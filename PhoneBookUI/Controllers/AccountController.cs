@@ -43,7 +43,7 @@ namespace PhoneBookUI.Controllers
                     TempData["PersonelAdiSoyadi"] = responseData.e_personel_adi_soyadi;
                     return RedirectToAction("Birkan", "Account");
                 }
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Logout", "Account");
             }
             catch (Exception)
             {
@@ -52,11 +52,33 @@ namespace PhoneBookUI.Controllers
 
 
         }
+
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            string uToken = CurrentUserToken.Token;
+            try
+            {
+                bool sonuc = webService.Logout(uToken);
+                if (sonuc)
+                {
+                    CurrentUserToken.Token = string.Empty;
+                    TempData["Deneme"] = "Çıkış yapıldı.";
+                }
+                return RedirectToAction("Login", "Account");
+
+            }
+            catch (Exception)
+            {
+
+                return RedirectToAction("Login", "Account");
+
+            }
+        }
+
         public ActionResult Birkan()
         {
             return View();
         }
-
-
     }
 }

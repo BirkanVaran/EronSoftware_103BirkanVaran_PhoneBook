@@ -70,7 +70,7 @@ namespace PhoneBookUI.WebServices
 
                         var result = JsonConvert.DeserializeObject<List<ResponseViewModel>>(response);
 
-                        return result.FirstOrDefault().MESAJ == "Çıkış Yapıldı" ? true : false;
+                        return result.FirstOrDefault().MESAJ == "Çıkış Yapıldı" ? true : false ;
                     }
                     catch (Exception ex)
                     {
