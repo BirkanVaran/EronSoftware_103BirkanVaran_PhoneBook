@@ -48,6 +48,17 @@ namespace PhoneBookUI.Controllers
             }
         }
 
+
+
+        public ActionResult Update()
+        {
+            var categoryList = webService.GetAllCategories(uToken);
+            return View(categoryList);
+        }
+
+
+
+        [HttpPost]
         public ActionResult Update(int eskiId, string newCategoryName)
         {
             try
@@ -55,7 +66,7 @@ namespace PhoneBookUI.Controllers
                 bool result = webService.UpdateCategory(newCategoryName,eskiId, uToken);
                 if (result)
                 {
-                    return RedirectToAction("Index", "Category");
+                    return RedirectToAction("CategoryList", "Category");
                 }
                 return RedirectToAction("Index", "Category");
             }

@@ -1,0 +1,30 @@
+﻿@using PhoneBookUI.Models.ViewModels
+@model List<CategoryViewModel>
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutStart.cshtml";
+}
+
+<h2>Kişi Ekle</h2>
+<br />
+
+<form class="form-horizontal" method="post" action="/Person/Create">
+    <label>Adı Soyadı</label><br />
+    <input type="text" class="form-control" name="fullName" /><br />
+    <label>Telefon</label> <br />
+    <input type="text" class="form-control" name="phoneNumber" /><br />
+    <label>Kategoriler</label> <br />   
+    <select name="Kategoriler">
+
+        <option>SA</option>
+        @*@foreach (var item in Model)
+            {
+                <option>@item.e_kategori_adi</option>
+            }*@
+    </select>
+    <br /><br />    
+
+
+
+    <input type="submit" value="Ekle" class="btn btn-default btn-block" style="background-color:#46B3AE; color:white;" />
+</form>

@@ -7,6 +7,7 @@ namespace PhoneBookUI.Models.ViewModels
 {
     public class PersonViewModel
     {
+        public int e_id { get; set; }
         public string e_adi_soyadi { get; set; }
         public string e_telefon { get; set; }
 

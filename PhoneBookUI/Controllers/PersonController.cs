@@ -20,6 +20,11 @@ namespace PhoneBookUI.Controllers
             return View(personList);
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Create(string fullName, string phoneNumber, int categoryId)
         {

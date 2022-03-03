@@ -1870,11 +1870,13 @@
     <Content Include="Views\Category\CategoryList.cshtml" />
     <Content Include="Views\Shared\_LayoutStart.cshtml" />
     <Content Include="Views\Home\Deneme.cshtml" />
+    <Content Include="Views\Category\Update.cshtml" />
+    <Content Include="Views\Person\Create.cshtml" />
+    <Content Include="Views\Person\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\tinymce\icons\" />
-    <Folder Include="Views\Person\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
