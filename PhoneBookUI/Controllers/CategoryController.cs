@@ -16,19 +16,12 @@ namespace PhoneBookUI.Controllers
 
 
         // GET: Category
-
-        [HttpGet]
         public ActionResult Index()
         {
             List<CategoryViewModel> categoryList = webService.GetAllCategories(uToken);
             return View(categoryList);
         }
 
-        public ActionResult Create()
-        {
-            return View();
-        }
-        [HttpPost]
         public ActionResult Create(string categoryName)
         {
             try
