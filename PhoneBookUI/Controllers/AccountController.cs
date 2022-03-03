@@ -41,9 +41,12 @@ namespace PhoneBookUI.Controllers
                 {
                     CurrentUserToken.Token = responseData.UTOKEN;
                     TempData["PersonelAdiSoyadi"] = responseData.e_personel_adi_soyadi;
-                    return RedirectToAction("Birkan", "Account");
+                    Session["uToken"] = responseData.UTOKEN;
+                    ViewBag.LoginMessage = "Giriş başarılı";
+                    return RedirectToAction("Index", "Home");
                 }
-                return RedirectToAction("Logout", "Account");
+                ViewBag.LoginMessage = "Kullanıcı adı ya da şifre yanlış.";
+                return View();
             }
             catch (Exception)
             {
@@ -53,7 +56,7 @@ namespace PhoneBookUI.Controllers
 
         }
 
-        [HttpPost]
+
         public ActionResult Logout()
         {
             string uToken = CurrentUserToken.Token;
@@ -63,9 +66,9 @@ namespace PhoneBookUI.Controllers
                 if (sonuc)
                 {
                     CurrentUserToken.Token = string.Empty;
-                    TempData["Deneme"] = "Çıkış yapıldı.";
+                    return RedirectToAction("Login", "Account");
                 }
-                return RedirectToAction("Login", "Account");
+                return View();
 
             }
             catch (Exception)
@@ -76,9 +79,24 @@ namespace PhoneBookUI.Controllers
             }
         }
 
-        public ActionResult Birkan()
-        {
-            return View();
-        }
+        //public ActionResult Logout()
+        //{
+        //    try
+        //    {
+        //        bool sonuc = webService.Logout(Session["utoken"] as String);
+        //        if (sonuc)
+        //        {
+        //            Session["utoken"] = string.Empty;
+        //        }
+        //        return RedirectToAction("Login", "Account");
+
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        return RedirectToAction("Login", "Account");
+
+        //    }
+        //}
     }
 }

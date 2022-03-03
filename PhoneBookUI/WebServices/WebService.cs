@@ -62,6 +62,7 @@ namespace PhoneBookUI.WebServices
                 {
                     try
                     {
+                        webClient.Headers.Add("ptoken", pToken);
                         webClient.Headers.Add("islem", "LOGOUT");
                         webClient.Headers.Add("utoken", uToken);
                         webClient.Encoding = Encoding.UTF8;
@@ -94,6 +95,7 @@ namespace PhoneBookUI.WebServices
                 {
                     try
                     {
+                        webClient.Headers.Add("ptoken", pToken);
                         webClient.Headers.Add("islem", "KATEGORI_LISTESI");
                         webClient.Headers.Add("utoken", uToken);
                         webClient.Encoding = Encoding.UTF8;
@@ -132,6 +134,7 @@ namespace PhoneBookUI.WebServices
                 {
                     try
                     {
+                        webClient.Headers.Add("ptoken", pToken);
                         webClient.Headers.Add("islem", "KATEGORI_LISTESI_EKLE");
                         webClient.Headers.Add("utoken", uToken);
                         webClient.Encoding = Encoding.UTF8;
@@ -174,6 +177,7 @@ namespace PhoneBookUI.WebServices
                 {
                     try
                     {
+                        webClient.Headers.Add("ptoken", pToken);
                         webClient.Headers.Add("islem", "KATEGORI_LISTESI_DUZENLE");
                         webClient.Headers.Add("utoken", uToken);
                         webClient.Encoding = Encoding.UTF8;
@@ -215,6 +219,7 @@ namespace PhoneBookUI.WebServices
                 {
                     try
                     {
+                        webClient.Headers.Add("ptoken", pToken);
                         webClient.Headers.Add("islem", "KATEGORI_LISTESI_SIL");
                         webClient.Headers.Add("utoken", uToken);
                         webClient.Encoding = Encoding.UTF8;
@@ -252,6 +257,7 @@ namespace PhoneBookUI.WebServices
                 {
                     try
                     {
+                        webClient.Headers.Add("ptoken", pToken);
                         webClient.Headers.Add("islem", "KISI_LISTESI");
                         webClient.Headers.Add("utoken", uToken);
                         webClient.Encoding = Encoding.UTF8;
@@ -293,6 +299,7 @@ namespace PhoneBookUI.WebServices
                 {
                     try
                     {
+                        webClient.Headers.Add("ptoken", pToken);
                         webClient.Headers.Add("islem", "KISI_LISTESI_EKLE");
                         webClient.Headers.Add("utoken", uToken);
                         webClient.Encoding = Encoding.UTF8;
@@ -338,6 +345,7 @@ namespace PhoneBookUI.WebServices
                 {
                     try
                     {
+                        webClient.Headers.Add("ptoken", pToken);
                         webClient.Headers.Add("islem", "KISI_LISTESI_DUZENLE");
                         webClient.Headers.Add("utoken", uToken);
                         webClient.Encoding = Encoding.UTF8;
@@ -379,6 +387,7 @@ namespace PhoneBookUI.WebServices
                 {
                     try
                     {
+                        webClient.Headers.Add("ptoken", pToken);
                         webClient.Headers.Add("islem", "KISI_LISTESI_SIL");
                         webClient.Headers.Add("utoken", uToken);
                         webClient.Encoding = Encoding.UTF8;

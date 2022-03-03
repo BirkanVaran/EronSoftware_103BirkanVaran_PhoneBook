@@ -1,0 +1,37 @@
+﻿@using PhoneBookUI.Models.ViewModels
+@model List<CategoryViewModel>
+@{
+    ViewBag.Title = "CategoryList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4 class="card-title">Kategori Listesi</h4>
+<div class="table" >
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Kategori Adı</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.e_id</td>
+                    <td>@item.e_kategori_adi</td>
+                    <td><a class="btn btn-danger" href="/Category/Update/@item.e_id"  name="Update" value="Güncelle">Düzenle</a>
+                    <a  class="btn btn-danger" href="/Category/Delete/@item.e_id" name="Delete" value="Sil">Sil</a></td>
+                @*<td>
+                    <a href="/Category/CategoryList/@item.e_id" class="btn btn-sm btn-default"
+                       style="background-color:powderblue; margin-right: 5px;">
+                        Düzenle
+                    </a>
+                </td>*@
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

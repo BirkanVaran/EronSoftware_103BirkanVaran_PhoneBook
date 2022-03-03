@@ -16,12 +16,20 @@ namespace PhoneBookUI.Controllers
 
 
         // GET: Category
-        public ActionResult Index()
+
+        
+        public ActionResult CategoryList()
         {
-            List<CategoryViewModel> categoryList = webService.GetAllCategories(uToken);
+            var categoryList = webService.GetAllCategories(uToken);
             return View(categoryList);
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult Create(string categoryName)
         {
             try
@@ -29,9 +37,9 @@ namespace PhoneBookUI.Controllers
                 bool result = webService.InsertCategory(categoryName, uToken);
                 if (result)
                 {
-                    return RedirectToAction("Index", "Category");
+                    return RedirectToAction("CategoryList", "Category");
                 }
-                return RedirectToAction("Index", "Category");
+                return View();
             }
             catch (Exception)
             {
