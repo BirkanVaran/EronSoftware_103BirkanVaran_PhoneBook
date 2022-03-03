@@ -50,13 +50,11 @@ namespace PhoneBookUI.Controllers
 
 
 
-        public ActionResult Update()
+        public ActionResult Update(int id)
         {
-            var categoryList = webService.GetAllCategories(uToken);
-            return View(categoryList);
+            ViewBag.categoryid = id;
+            return View();
         }
-
-
 
         [HttpPost]
         public ActionResult Update(int eskiId, string newCategoryName)
@@ -68,7 +66,7 @@ namespace PhoneBookUI.Controllers
                 {
                     return RedirectToAction("CategoryList", "Category");
                 }
-                return RedirectToAction("Index", "Category");
+                return RedirectToAction("CategoryList", "Category");
             }
             catch (Exception)
             {
@@ -84,9 +82,9 @@ namespace PhoneBookUI.Controllers
                 bool result = webService.DeleteCategory(eskiId, uToken);
                 if (result)
                 {
-                    return RedirectToAction("Index", "Category");
+                    return RedirectToAction("CategoryList", "Category");
                 }
-                return RedirectToAction("Index", "Category");
+                return RedirectToAction("CategoryList", "Category");
             }
             catch (Exception)
             {

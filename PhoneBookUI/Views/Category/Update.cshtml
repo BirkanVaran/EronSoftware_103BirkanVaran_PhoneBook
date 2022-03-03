@@ -5,12 +5,12 @@
     Layout = "~/Views/Shared/_LayoutStart.cshtml";
 }
 
-<h2>Update</h2>
 
-<form class="form-horizontal" action="/Category/Update">
-     
-    <input type="text" readonly class="form-control" name="@Model.ESKI_ID"/>
-    <input type="text" class="form-control" name="newCategoryName"/>
 
-    <input type="submit" value="Güncelle" class="btn btn-default btn-block" style="background-color:#46B3AE; color:white;" />
+<form class="form-horizontal" method="post" action="/Category/Update">
+    <label>Kategori ID</label><br />
+    <input type="text" class="form-control" readonly name="categoryId" value="@ViewBag.categoryid" /><br />
+    <label>Kategori Adı</label> <br />
+    <input type="text" class="form-control" name="categoryName" /><br />
+    <input type="submit" value="Ekle" class="btn btn-default btn-block" style="background-color:#46B3AE; color:white;" />
 </form>

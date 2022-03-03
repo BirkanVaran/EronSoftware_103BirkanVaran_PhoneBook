@@ -1,5 +1,5 @@
 ﻿@using PhoneBookUI.Models.ViewModels
-@model List<CategoryViewModel>
+@model PersonViewModel
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutStart.cshtml";
@@ -13,16 +13,13 @@
     <input type="text" class="form-control" name="fullName" /><br />
     <label>Telefon</label> <br />
     <input type="text" class="form-control" name="phoneNumber" /><br />
-    <label>Kategoriler</label> <br />   
-    <select name="Kategoriler">
-
-        <option>SA</option>
-        @*@foreach (var item in Model)
-            {
-                <option>@item.e_kategori_adi</option>
-            }*@
-    </select>
-    <br /><br />    
+    <label>Kategoriler</label> <br />
+    <div class="form-group">
+        @Html.DropDownListFor(x => x.e_kategori_id, (List<SelectListItem>)ViewBag.category,
+           new { @class = "form-control" }
+           )
+    </div>
+   
 
 
 

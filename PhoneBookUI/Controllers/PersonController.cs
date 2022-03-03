@@ -22,6 +22,13 @@ namespace PhoneBookUI.Controllers
 
         public ActionResult Create()
         {
+            List<SelectListItem> categoryList = new List<SelectListItem>();
+            webService.GetAllCategories(CurrentUserToken.Token).ForEach(x => categoryList.Add(new SelectListItem()
+            {
+                Text = x.e_kategori_adi,
+                Value = x.e_id.ToString()
+            }));
+            ViewBag.category = categoryList;
             return View();
         }
 
@@ -43,6 +50,17 @@ namespace PhoneBookUI.Controllers
 
                 return View();
             }
+        }
+        public ActionResult Update()
+        {
+            List<SelectListItem> categoryList = new List<SelectListItem>();
+            webService.GetAllCategories(CurrentUserToken.Token).ForEach(x => categoryList.Add(new SelectListItem()
+            {
+                Text = x.e_kategori_adi,
+                Value = x.e_id.ToString()
+            }));
+            ViewBag.category = categoryList;
+            return View();
         }
 
         [HttpPost]
