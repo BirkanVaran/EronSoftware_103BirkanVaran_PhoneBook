@@ -257,12 +257,54 @@ namespace PhoneBookUI.WebServices
                 {
                     try
                     {
+
+
                         webClient.Headers.Add("ptoken", pToken);
                         webClient.Headers.Add("islem", "KISI_LISTESI");
                         webClient.Headers.Add("utoken", uToken);
                         webClient.Encoding = Encoding.UTF8;
 
                         string response = webClient.UploadString(personUrl, "POST", string.Empty);
+
+
+                        var result = JsonConvert.DeserializeObject<List<PersonViewModel>>(response);
+
+                        return result;
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        throw ex;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<PersonViewModel> Search(string uToken, PersonSearchModel searchModel)
+        {
+
+            try
+            {
+                using (WebClient webClient = new WebClient())
+                {
+                    try
+                    {
+
+
+                        webClient.Headers.Add("ptoken", pToken);
+                        webClient.Headers.Add("islem", "KISI_LISTESI");
+                        webClient.Headers.Add("utoken", uToken);
+                        webClient.Encoding = Encoding.UTF8;
+
+                        string data = JsonConvert.SerializeObject(searchModel);
+
+                        string response = webClient.UploadString(personUrl, "POST", data);
 
 
                         var result = JsonConvert.DeserializeObject<List<PersonViewModel>>(response);
@@ -293,6 +335,8 @@ namespace PhoneBookUI.WebServices
                 {
                     try
                     {
+                        
+
                         webClient.Headers.Add("ptoken", pToken);
                         webClient.Headers.Add("islem", "KISI_LISTESI_EKLE");
                         webClient.Headers.Add("utoken", uToken);
@@ -323,13 +367,20 @@ namespace PhoneBookUI.WebServices
 
         }
 
-        public bool UpdatePerson(PersonUpdateViewModel updateModel, string uToken)
+        public bool UpdatePerson(string newFullName, int newCategoryId, string newPhoneNumber, int id, string uToken)
         {
             try
             {
-                
+
                 using (WebClient webClient = new WebClient())
                 {
+                    PersonUpdateViewModel updateModel = new PersonUpdateViewModel()
+                    {
+                        e_adi_soyadi=newFullName,
+                        e_kategori_id=newCategoryId,
+                        e_telefon=newPhoneNumber,
+                        ESKI_ID=id
+                    };
                     try
                     {
                         webClient.Headers.Add("ptoken", pToken);
@@ -339,11 +390,11 @@ namespace PhoneBookUI.WebServices
 
                         string data = JsonConvert.SerializeObject(updateModel);
 
-                        string response = webClient.UploadString(categoryUrl, "POST", data);
+                        string response = webClient.UploadString(personUrl, "POST", data);
 
                         var result = JsonConvert.DeserializeObject<List<ResponseViewModel>>(response);
 
-                        return result.FirstOrDefault().MESAJ == "Kişi bilgisi güncellendi" ? true : false;
+                        return result.FirstOrDefault().HATA_ACIKLAMASI == "Kişi bilgisi güncellendi" ? true : false;
 
 
                     }
@@ -386,7 +437,7 @@ namespace PhoneBookUI.WebServices
                         var result = JsonConvert.DeserializeObject<List<ResponseViewModel>>(response);
 
                         return result.FirstOrDefault().HATA_ACIKLAMASI == "Kişi silindi" ? true : false;
-                      
+
 
 
                     }

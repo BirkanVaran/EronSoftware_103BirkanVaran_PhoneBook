@@ -16,10 +16,26 @@ namespace PhoneBookUI.Controllers
         // GET: Category
         public ActionResult Index()
         {
+
             List<PersonViewModel> personList = webService.GetAllPeople(uToken);
             return View(personList);
         }
 
+        public ActionResult Search(int? categoryId, string name)
+        {
+            if (name!=null)
+            {
+                PersonSearchModel searchModel = new PersonSearchModel()
+                {
+                    e_adi_soyadi = name,
+                    e_kategori_id = categoryId
+                };
+                List<PersonViewModel> personList = webService.Search(uToken, searchModel);
+                return View(personList);
+            }
+            return View();
+        }
+       
         public ActionResult Create()
         {
             List<SelectListItem> categoryList = new List<SelectListItem>();
@@ -52,7 +68,7 @@ namespace PhoneBookUI.Controllers
                 return View();
             }
         }
-        public ActionResult Update()
+        public ActionResult Update(int id)
         {
             List<SelectListItem> categoryList = new List<SelectListItem>();
             webService.GetAllCategories(CurrentUserToken.Token).ForEach(x => categoryList.Add(new SelectListItem()
@@ -61,6 +77,7 @@ namespace PhoneBookUI.Controllers
                 Value = x.e_id.ToString()
             }));
             ViewBag.Category = categoryList;
+            ViewBag.PersonId = id;
             return View();
         }
 
@@ -69,7 +86,7 @@ namespace PhoneBookUI.Controllers
         {
             try
             {
-                bool result = webService.UpdatePerson(updateModel, uToken);
+                bool result = webService.UpdatePerson(updateModel.e_adi_soyadi, updateModel.e_kategori_id, updateModel.e_telefon, updateModel.ESKI_ID, uToken);
                 if (result)
                 {
                     return RedirectToAction("Index", "Person");

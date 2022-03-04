@@ -10,12 +10,14 @@
 
 <form class="form-horizontal" method="post" action="/Person/Update">
 
+    <label>ID</label><br />
+    <input type="text" readonly class="form-control" name="ESKI_ID" value="@ViewBag.PersonId"/><br />
     <label>Adı Soyadı</label><br />
     <input type="text" class="form-control" name="e_adi_soyadi" /><br />
     <label>Telefon</label> <br />
     <input type="text" class="form-control" name="e_telefon" /><br />
     <label>Kategoriler</label> <br />
-    <div class="form-group">
+    <div class="form-group" style="margin-left:auto">
         @Html.DropDownListFor(x => x.e_kategori_id, (List<SelectListItem>)ViewBag.Category,
            new { @class = "form-control" }
            )

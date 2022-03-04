@@ -6,7 +6,7 @@
 }
 
 <h2>Kişi Ekle</h2>
-<br />
+<br /><br />
 
 <form class="form-horizontal" method="post" action="/Person/Create">
     <label>Adı Soyadı</label><br />
@@ -14,7 +14,7 @@
     <label>Telefon</label> <br />
     <input type="text" class="form-control" name="e_telefon" /><br />
     <label>Kategoriler</label> <br />
-    <div class="form-group">
+    <div class="form-group" style="margin-left:auto">
         @Html.DropDownListFor(x => x.e_kategori_id, (List<SelectListItem>)ViewBag.Category,
            new { @class = "form-control" }
            )

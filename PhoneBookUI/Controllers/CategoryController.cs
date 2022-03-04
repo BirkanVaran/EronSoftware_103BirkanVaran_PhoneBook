@@ -17,7 +17,7 @@ namespace PhoneBookUI.Controllers
 
         // GET: Category
 
-        
+
         public ActionResult CategoryList()
         {
             var categoryList = webService.GetAllCategories(uToken);
@@ -57,11 +57,12 @@ namespace PhoneBookUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(int id, string newCategoryName)
+        public ActionResult Update(CategoryUpdateViewModel updateModel)
         {
+
             try
             {
-                bool result = webService.UpdateCategory(newCategoryName,id, uToken);
+                bool result = webService.UpdateCategory(updateModel.e_kategori_adi, updateModel.ESKI_ID, uToken);
                 if (result)
                 {
                     return RedirectToAction("CategoryList", "Category");
