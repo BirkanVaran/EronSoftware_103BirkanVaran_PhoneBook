@@ -29,16 +29,17 @@ namespace PhoneBookUI.Controllers
                 Value = x.e_id.ToString()
             }));
             ViewBag.category = categoryList;
+            
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(string fullName, string phoneNumber, int categoryId)
+        public ActionResult Create(PersonViewModel personModel)
         {
             
             try
             {
-                bool result = webService.InsertPerson(fullName, phoneNumber, categoryId, uToken);
+                bool result = webService.InsertPerson(personModel, uToken);
                 if (result)
                 {
                     return RedirectToAction("Index", "Person");
@@ -59,16 +60,16 @@ namespace PhoneBookUI.Controllers
                 Text = x.e_kategori_adi,
                 Value = x.e_id.ToString()
             }));
-            ViewBag.category = categoryList;
+            ViewBag.Category = categoryList;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Update(string newFullName, string newPhoneNumber, int newCategoryId, int eskiId)
+        public ActionResult Update(PersonUpdateViewModel updateModel)
         {
             try
             {
-                bool result = webService.UpdatePerson(newFullName, newPhoneNumber, newCategoryId, eskiId, uToken);
+                bool result = webService.UpdatePerson(updateModel, uToken);
                 if (result)
                 {
                     return RedirectToAction("Index", "Person");
@@ -81,12 +82,11 @@ namespace PhoneBookUI.Controllers
                 return View();
             }
         }
-        [HttpPost]
-        public ActionResult Delete(int eskiId)
+        public ActionResult Delete(int id)
         {
             try
             {
-                bool result = webService.DeletePerson(eskiId, uToken);
+                bool result = webService.DeletePerson(id, uToken);
                 if (result)
                 {
                     return RedirectToAction("Index", "Person");

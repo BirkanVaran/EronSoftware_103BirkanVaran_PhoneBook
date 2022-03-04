@@ -22,7 +22,7 @@ namespace PhoneBookUI.WebServices
 
             try
             {
-  
+
                 using (WebClient webClient = new WebClient())
                 {
                     try
@@ -71,7 +71,7 @@ namespace PhoneBookUI.WebServices
 
                         var result = JsonConvert.DeserializeObject<List<ResponseViewModel>>(response);
 
-                        return result.FirstOrDefault().MESAJ == "Çıkış Yapıldı" ? true : false ;
+                        return result.FirstOrDefault().MESAJ == "Çıkış Yapıldı" ? true : false;
                     }
                     catch (Exception ex)
                     {
@@ -130,7 +130,7 @@ namespace PhoneBookUI.WebServices
                 {
                     e_kategori_adi = categoryName
                 };
-                using (WebClient webClient=new WebClient())
+                using (WebClient webClient = new WebClient())
                 {
                     try
                     {
@@ -284,17 +284,11 @@ namespace PhoneBookUI.WebServices
             }
         }
 
-        public bool InsertPerson(string fullName, string phoneNumber, int categoryId, string uToken)
+        public bool InsertPerson(PersonViewModel insertModel, string uToken)
         {
             try
             {
-                PersonInsertViewModel insertModel = new PersonInsertViewModel()
-                {
-                    e_kategori_id=categoryId,
-                    e_adi_soyadi=fullName,
-                    e_telefon=phoneNumber
 
-                };
                 using (WebClient webClient = new WebClient())
                 {
                     try
@@ -329,18 +323,11 @@ namespace PhoneBookUI.WebServices
 
         }
 
-        public bool UpdatePerson(string newFullName, string newPhoneNumber,int newCategoryId, int eskiId, string uToken)
+        public bool UpdatePerson(PersonUpdateViewModel updateModel, string uToken)
         {
             try
             {
-                PersonUpdateViewModel updateModel = new PersonUpdateViewModel()
-                {
-                    e_kategori_id=newCategoryId,
-                    e_adi_soyadi=newFullName,
-                    e_telefon=newPhoneNumber,
-                    ESKI_ID=eskiId
-
-                };
+                
                 using (WebClient webClient = new WebClient())
                 {
                     try
@@ -398,7 +385,8 @@ namespace PhoneBookUI.WebServices
 
                         var result = JsonConvert.DeserializeObject<List<ResponseViewModel>>(response);
 
-                        return result.FirstOrDefault().MESAJ == "Kişi silindi" ? true : false;
+                        return result.FirstOrDefault().HATA_ACIKLAMASI == "Kişi silindi" ? true : false;
+                      
 
 
                     }
@@ -416,12 +404,6 @@ namespace PhoneBookUI.WebServices
             }
 
         }
-
-
-
-
-
-
 
     }
 }

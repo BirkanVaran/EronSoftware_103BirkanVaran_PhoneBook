@@ -43,7 +43,7 @@ namespace PhoneBookUI.Controllers
                     TempData["PersonelAdiSoyadi"] = responseData.e_personel_adi_soyadi;
                     Session["uToken"] = responseData.UTOKEN;
                     ViewBag.LoginMessage = "Giriş başarılı";
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Person");
                 }
                 ViewBag.LoginMessage = "Kullanıcı adı ya da şifre yanlış.";
                 return View();

@@ -12,6 +12,7 @@ namespace PhoneBookUI.Models.ViewModels
         public string e_telefon { get; set; }
 
         public int e_kategori_id { get; set; }
+        public string e_kategori_adi { get; set; }
 
         public CategoryViewModel CategoryVM { get; set; }
 

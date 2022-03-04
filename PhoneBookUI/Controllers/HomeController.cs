@@ -12,11 +12,7 @@ namespace PhoneBookUI.Controllers
 
         public ActionResult Index()
         {
-            if (string.IsNullOrEmpty(CurrentUserToken.Token))
-            {
-                return View();
-            }
-            return View();
+            return RedirectToAction("Login", "Account");
         }
         public ActionResult Deneme()
         {

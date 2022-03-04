@@ -1,14 +1,15 @@
 ﻿@using PhoneBookUI.Models.ViewModels
-@model PersonViewModel
+@model PersonUpdateViewModel
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Update";
     Layout = "~/Views/Shared/_LayoutStart.cshtml";
 }
 
-<h2>Kişi Ekle</h2>
+<h2>Kişi Güncelle</h2>
 <br />
 
-<form class="form-horizontal" method="post" action="/Person/Create">
+<form class="form-horizontal" method="post" action="/Person/Update">
+
     <label>Adı Soyadı</label><br />
     <input type="text" class="form-control" name="e_adi_soyadi" /><br />
     <label>Telefon</label> <br />
@@ -18,12 +19,9 @@
         @Html.DropDownListFor(x => x.e_kategori_id, (List<SelectListItem>)ViewBag.Category,
            new { @class = "form-control" }
            )
-        
+
 
     </div>
-   
-
-
 
     <input type="submit" value="Ekle" class="btn btn-default btn-block" style="background-color:#46B3AE; color:white;" />
 </form>

@@ -52,16 +52,16 @@ namespace PhoneBookUI.Controllers
 
         public ActionResult Update(int id)
         {
-            ViewBag.categoryid = id;
+            ViewBag.CategoryId = id;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Update(int eskiId, string newCategoryName)
+        public ActionResult Update(int id, string newCategoryName)
         {
             try
             {
-                bool result = webService.UpdateCategory(newCategoryName,eskiId, uToken);
+                bool result = webService.UpdateCategory(newCategoryName,id, uToken);
                 if (result)
                 {
                     return RedirectToAction("CategoryList", "Category");
@@ -75,11 +75,11 @@ namespace PhoneBookUI.Controllers
             }
         }
 
-        public ActionResult Delete(int eskiId)
+        public ActionResult Delete(int id)
         {
             try
             {
-                bool result = webService.DeleteCategory(eskiId, uToken);
+                bool result = webService.DeleteCategory(id, uToken);
                 if (result)
                 {
                     return RedirectToAction("CategoryList", "Category");

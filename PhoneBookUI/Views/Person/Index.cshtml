@@ -23,11 +23,11 @@
                 <tr>
                     <td>@item.e_id</td>
                     <td>@item.e_adi_soyadi</td>
-                    <td>@item.e_kategori_id</td>
+                    <td>@item.e_kategori_adi</td>
                     <td>@item.e_telefon</td>
                     <td>
-                        <a class="btn btn-danger" href="/Category/Update/@item.e_id" name="Update" value="Güncelle">Düzenle</a>
-                        <a class="btn btn-danger" href="/Category/Delete/@item.e_id" name="Delete" value="Sil">Sil</a>
+                        <a href="/Person/Update/@item.e_id" class="btn btn-danger">Düzenle</a>
+                        <a href="/Person/Delete/@item.e_id" class="btn btn-danger">Sil</a>
                     </td>
                     @*<td>
                             <a href="/Category/CategoryList/@item.e_id" class="btn btn-sm btn-default"
