@@ -1854,7 +1854,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Account\Logout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\tinymce\langs\README.md" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_full_compressed.cshtml" />
